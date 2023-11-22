@@ -17,6 +17,11 @@ bake: $(VEXECS)/cookiecutter
 	$(VEXECS)/cookiecutter $(BAKE_OPTIONS) . --overwrite-if-exists
 
 
+.PHONY: test
+test: $(VEXECS)/pytest
+	$(VEXECS)/pytest
+
+
 .PHONY: clean
 clean:
 	rm -rf $(BAKE_OUTPUT)
@@ -28,4 +33,7 @@ $(VENV):
 	$(VEXECS)/pip install --upgrade pip
 
 $(VEXECS)/cookiecutter: $(VENV)
+	$(VEXECS)/pip install -r requirements-dev.txt
+
+$(VEXECS)/pytest: $(VENV)
 	$(VEXECS)/pip install -r requirements-dev.txt
