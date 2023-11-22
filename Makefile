@@ -27,4 +27,4 @@ $(VENV):
 	$(VEXECS)/pip install --upgrade pip
 
 $(VEXECS)/cookiecutter: $(VENV)
-	$(VEXECS)/pip install cookiecutter
+	$(VEXECS)/pip install -r requirements-dev.txt
