@@ -20,6 +20,7 @@ bake: $(VEXECS)/cookiecutter
 .PHONY: clean
 clean:
 	rm -rf $(BAKE_OUTPUT)
+	$(VEXECS)/cleanpy --all --exclude-envs .
 
 
 $(VENV):
