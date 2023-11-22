@@ -21,7 +21,6 @@ def test_bake_with_defaults(cookies):
         assert result.exit_code == 0
         assert result.exception is None
 
-        # breakpoint()
         found_toplevel_files = [f.name for f in result.project_path.iterdir()]
         assert '.editorconfig' in found_toplevel_files
         assert '.gitignore' in found_toplevel_files
