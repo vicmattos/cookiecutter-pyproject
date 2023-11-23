@@ -2,9 +2,13 @@
   "project_name": "My Project",
   "project_slug": "{{ cookiecutter.project_name.lower().replace(' ', '_').replace('-', '_') }}",
   "python_version": ["3.11", "3.10", "3.9", "3.8"],
+  "full_name": "Victor Mattos",
+  "open_source_license": ["MIT license", "BSD license", "ISC license", "Apache Software License 2.0", "GNU General Public License v3", "Not open source"],
   "__prompts__": {
     "project_name": "The name of the project (and directory name of it)",
     "project_slug": "Project slug [bold yellow]in lower case with `_`[/]",
-    "python_version": "The version of python"
+    "python_version": "The version of python",
+    "full_name": "Enter your full name",
+    "open_source_license": "Choose your OSS license"
   }
 }
