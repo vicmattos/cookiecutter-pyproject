@@ -1,4 +1,6 @@
 from contextlib import contextmanager
+from pathlib import Path
+
 from cookiecutter.utils import rmtree
 
 @contextmanager
@@ -26,3 +28,14 @@ def test_bake_with_defaults(cookies):
         assert '.gitignore' in found_toplevel_files
         assert 'Makefile' in found_toplevel_files
         assert 'pyproject.toml' in found_toplevel_files
+
+
+def test_bake_every_python_version(cookies):
+    for pyversion in ['3.11', '3.10', '3.9', '3.8']:
+        with bake_in_temp_dir(
+            cookies,
+            extra_context={'python_version': pyversion}
+        ) as result:
+            root: Path = result.project_path
+            assert f'requires-python = ">={pyversion}' in (root / 'pyproject.toml').read_text()
+            assert f'PYVERSION = {pyversion}' in (root / 'Makefile').read_text()
