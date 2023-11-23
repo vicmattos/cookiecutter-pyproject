@@ -12,6 +12,11 @@ ifeq ($(OS), Windows_NT)
 endif
 
 
+.PHONY: setup
+setup: $(VEXECS)/pre-commit
+	$(VEXECS)/pre-commit install --install-hooks --overwrite
+
+
 .PHONY: bake
 bake: $(VEXECS)/cookiecutter
 	$(VEXECS)/cookiecutter $(BAKE_OPTIONS) . --overwrite-if-exists
@@ -36,4 +41,7 @@ $(VEXECS)/cookiecutter: $(VENV)
 	$(VEXECS)/pip install -r requirements-dev.txt
 
 $(VEXECS)/pytest: $(VENV)
+	$(VEXECS)/pip install -r requirements-dev.txt
+
+$(VEXECS)/pre-commit: $(VENV)
 	$(VEXECS)/pip install -r requirements-dev.txt
