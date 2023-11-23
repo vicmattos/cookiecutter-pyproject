@@ -1,4 +1,4 @@
-BAKE_OUTPUT=ouput
+BAKE_OUTPUT=output
 BAKE_OPTIONS=--no-input --output-dir $(BAKE_OUTPUT)
 
 PY = python3
