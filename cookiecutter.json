@@ -1,8 +1,10 @@
 {
-  "project_name": "my-project",
+  "project_name": "My Project",
+  "project_slug": "{{ cookiecutter.project_name.lower().replace(' ', '_').replace('-', '_') }}",
   "python_version": ["3.11", "3.10", "3.9", "3.8"],
   "__prompts__": {
-    "project_name": "The name of the project [bold yellow]in lower case with `-`[/]",
+    "project_name": "The name of the project (and directory name of it)",
+    "project_slug": "Project slug [bold yellow]in lower case with `_`[/]",
     "python_version": "The version of python"
   }
 }
