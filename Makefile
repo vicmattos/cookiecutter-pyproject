@@ -24,6 +24,11 @@ bake: $(VEXECS)/cookiecutter
 
 .PHONY: test
 test: $(VEXECS)/pytest
+	$(VEXECS)/pytest -m "not slow"
+
+
+.PHONY: test-all
+test-all: $(VEXECS)/pytest
 	$(VEXECS)/pytest
 
 
