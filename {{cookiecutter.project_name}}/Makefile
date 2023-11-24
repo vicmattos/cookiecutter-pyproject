@@ -29,6 +29,14 @@ clean:
 	$(VEXECS)/cleanpy --all --exclude-envs .
 
 
+requirements.txt: pyproject.toml $(VEXECS)/pip-compile
+	$(VEXECS)/pip-compile --strip-extras
+
+
+requirements-dev.txt: pyproject.toml $(VEXECS)/pip-compile
+	$(VEXECS)/pip-compile --strip-extras --extra=dev --output-file=requirements-dev.txt
+
+
 $(VENV): $(VIRTUALENVEXEC)
 	$(PY) $(VIRTUALENVEXEC) $(VENV)
 	$(VEXECS)/pip install --upgrade pip
@@ -41,13 +49,5 @@ endif
 	curl https://bootstrap.pypa.io/virtualenv/$(PYVERSION)/virtualenv.pyz --output $(VIRTUALENVEXEC)
 
 
-requirements.txt: $(VENV) pyproject.toml $(VEXECS)/pip-compile
-	$(VEXECS)/pip-compile
-
-
-requirements-dev.txt: $(VENV) pyproject.toml $(VEXECS)/pip-compile
-	$(VEXECS)/pip-compile --extra=dev --output-file=requirements-dev.txt
-
-
-$(VEXECS)/pip-compile: $(VENV)
-	$(VEXECS)/pip install pip-tools
+$(VEXECS)/%: $(VENV) requirements-dev.txt
+	$(VEXECS)/pip install -r requirements-dev.txt
