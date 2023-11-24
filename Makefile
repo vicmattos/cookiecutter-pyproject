@@ -48,14 +48,6 @@ $(VENV):
 	$(PY) -m venv $(VENV)
 	$(VEXECS)/pip install --upgrade pip
 
-$(VEXECS)/cookiecutter: $(VENV)
+$(VEXECS)/%: $(VENV)
 	$(VEXECS)/pip install -r requirements-dev.txt
-
-$(VEXECS)/pytest: $(VENV)
-	$(VEXECS)/pip install -r requirements-dev.txt
-
-$(VEXECS)/pre-commit: $(VENV)
-	$(VEXECS)/pip install -r requirements-dev.txt
-
-$(VEXECS)/mkdocs: $(VENV)
-	$(VEXECS)/pip install -r requirements-dev.txt
+	[ ! -f $@ ] && $(error Python command $@ not found in $(VENV))
