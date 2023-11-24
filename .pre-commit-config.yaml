@@ -9,3 +9,9 @@ repos:
     -   id: check-added-large-files
     -   id: debug-statements
     -   id: name-tests-test
+
+-   repo: https://github.com/python-jsonschema/check-jsonschema
+    rev: 0.27.1
+    hooks:
+    -   id: check-dependabot
+    -   id: check-github-workflows
