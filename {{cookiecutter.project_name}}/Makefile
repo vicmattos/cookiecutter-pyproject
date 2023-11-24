@@ -17,7 +17,7 @@ setup: $(VEXECS)/pre-commit
 
 
 .PHONY: clean
-clean:
+clean: $(VEXECS)/cleanpy
 	$(VEXECS)/cleanpy --all --exclude-envs .
 
 
@@ -33,13 +33,11 @@ $(VENV): $(VIRTUALENVEXEC)
 	$(PY) $(VIRTUALENVEXEC) $(VENV)
 	$(VEXECS)/pip install --upgrade pip
 
+$(VEXECS)/%: $(VENV) requirements-dev.txt
+	$(VEXECS)/pip install -r requirements-dev.txt
 
 $(VIRTUALENVEXEC):
 ifndef PYVERSION
 	$(error Please set PYVERSION variable in Makefile)
 endif
 	curl https://bootstrap.pypa.io/virtualenv/$(PYVERSION)/virtualenv.pyz --output $(VIRTUALENVEXEC)
-
-
-$(VEXECS)/%: $(VENV) requirements-dev.txt
-	$(VEXECS)/pip install -r requirements-dev.txt
