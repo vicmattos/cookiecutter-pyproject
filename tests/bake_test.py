@@ -14,6 +14,7 @@ def test_bake_with_defaults(cookies, bake_in_temp_dir):
         assert '.gitignore' in found_toplevel_files
         assert 'Makefile' in found_toplevel_files
         assert 'pyproject.toml' in found_toplevel_files
+        assert '.pre-commit-config.yaml' in found_toplevel_files
 
 
 @pytest.mark.slow
