@@ -23,15 +23,15 @@ def test_bake_and_run_make_setup(cookies, bake_in_temp_dir, run_inside_dir):
         assert run_inside_dir('make setup', result.project_path) == 0
 
 
-def test_bake_every_python_version(cookies, bake_in_temp_dir):
-    for pyversion in ['3.11', '3.10', '3.9', '3.8']:
-        with bake_in_temp_dir(
-            cookies,
-            extra_context={'python_version': pyversion}
-        ) as result:
-            root: Path = result.project_path
-            assert f'requires-python = ">={pyversion}' in (root / 'pyproject.toml').read_text()
-            assert f'PYVERSION = {pyversion}' in (root / 'Makefile').read_text()
+@pytest.mark.parametrize("pyversion", ['3.11', '3.10', '3.9', '3.8'])
+def test_bake_every_python_version(cookies, bake_in_temp_dir, pyversion):
+    with bake_in_temp_dir(
+        cookies,
+        extra_context={'python_version': pyversion}
+    ) as result:
+        root: Path = result.project_path
+        assert f'requires-python = ">={pyversion}' in (root / 'pyproject.toml').read_text()
+        assert f'PYVERSION = {pyversion}' in (root / 'Makefile').read_text()
 
 
 def test_bake_not_open_source(cookies, bake_in_temp_dir):
