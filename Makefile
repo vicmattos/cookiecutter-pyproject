@@ -50,4 +50,3 @@ $(VENV):
 
 $(VEXECS)/%: $(VENV)
 	$(VEXECS)/pip install -r requirements-dev.txt
-	[ ! -f $@ ] && $(error Python command $@ not found in $(VENV))
