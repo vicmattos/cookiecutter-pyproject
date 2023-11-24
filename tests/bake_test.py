@@ -19,8 +19,8 @@ def test_bake_with_defaults(cookies, bake_in_temp_dir):
 @pytest.mark.slow
 def test_bake_and_run_make_setup(cookies, bake_in_temp_dir, run_inside_dir):
     with bake_in_temp_dir(cookies) as result:
-        assert result.project_path.is_dir()
-        run_inside_dir('make setup', str(result.project_path)) == 0
+        run_inside_dir('git init .', result.project_path)
+        assert run_inside_dir('make setup', result.project_path) == 0
 
 
 def test_bake_every_python_version(cookies, bake_in_temp_dir):

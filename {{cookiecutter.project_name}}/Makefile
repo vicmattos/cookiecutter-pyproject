@@ -12,16 +12,8 @@ endif
 
 
 .PHONY: setup
-setup:
-	make $(VENV)
-	make install-req
-	make clean
-
-
-.PHONY: install-req
-install-req: $(VENV) requirements.txt requirements-dev.txt
-	$(VEXECS)/pip install -r requirements.txt
-	$(VEXECS)/pip install -r requirements-dev.txt
+setup: $(VEXECS)/pre-commit
+	$(VEXECS)/pre-commit install --install-hooks --overwrite
 
 
 .PHONY: clean
