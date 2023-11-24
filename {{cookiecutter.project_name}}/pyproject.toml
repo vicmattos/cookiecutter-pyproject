@@ -4,4 +4,4 @@ version = "0.0.1"
 requires-python = ">={{ cookiecutter.python_version }}"
 
 [project.optional-dependencies]
-dev = ["pip-tools", "cleanpy"]
+dev = ["pip-tools", "cleanpy", "pre-commit"]
