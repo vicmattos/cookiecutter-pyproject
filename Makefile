@@ -32,6 +32,11 @@ test-all: $(VEXECS)/pytest
 	$(VEXECS)/pytest
 
 
+.PHONY: docs-serve
+docs-serve: $(VEXECS)/mkdocs
+	$(VEXECS)/mkdocs serve
+
+
 .PHONY: clean
 clean:
 	rm -rf site/
@@ -50,4 +55,7 @@ $(VEXECS)/pytest: $(VENV)
 	$(VEXECS)/pip install -r requirements-dev.txt
 
 $(VEXECS)/pre-commit: $(VENV)
+	$(VEXECS)/pip install -r requirements-dev.txt
+
+$(VEXECS)/mkdocs: $(VENV)
 	$(VEXECS)/pip install -r requirements-dev.txt
