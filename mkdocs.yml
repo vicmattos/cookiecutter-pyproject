@@ -1,0 +1,6 @@
+site_name: Python Project Cookiecutter
+theme:
+  name: material
+
+copyright: |
+  &copy; 2023 <a href="https://github.com/vicmattos"  target="_blank" rel="noopener">Victor Mattos</a>

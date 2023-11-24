@@ -34,6 +34,7 @@ test-all: $(VEXECS)/pytest
 
 .PHONY: clean
 clean:
+	rm -rf site/
 	rm -rf $(BAKE_OUTPUT)
 	$(VEXECS)/cleanpy --all --exclude-envs .
 
