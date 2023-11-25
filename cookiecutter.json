@@ -4,6 +4,7 @@
   "python_version": ["3.11", "3.10", "3.9", "3.8"],
   "full_name": "Victor Mattos",
   "open_source_license": ["MIT license", "BSD license", "ISC license", "Apache Software License 2.0", "GNU General Public License v3", "Not open source"],
+  "documentation_framework": ["MKDocs", "No documentation"],
   "__prompts__": {
     "project_name": "The name of the project (and directory name of it)",
     "project_slug": "Project slug [bold yellow]in lower case with `_`[/]",

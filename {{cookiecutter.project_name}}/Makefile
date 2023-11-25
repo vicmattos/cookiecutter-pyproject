@@ -16,8 +16,14 @@ setup: $(VEXECS)/pre-commit
 	$(VEXECS)/pre-commit install --install-hooks --overwrite
 
 
+.PHONY: docs-build
+docs-build: $(VEXECS)/mkdocs
+	$(VEXECS)/mkdocs build
+
+
 .PHONY: clean
 clean: $(VEXECS)/cleanpy
+	rm -rf site/
 	$(VEXECS)/cleanpy --all --exclude-envs .
 
 

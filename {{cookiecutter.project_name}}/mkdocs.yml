@@ -1,0 +1,6 @@
+site_name: {{ cookiecutter.project_name }}
+theme:
+  name: material
+
+copyright: |
+  &copy; 2023 {{ cookiecutter.full_name }}
