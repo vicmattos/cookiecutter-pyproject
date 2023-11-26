@@ -7,7 +7,7 @@ repos:
     -   id: check-toml
         exclude: "{{cookiecutter.project_name}}/pyproject.toml"
     -   id: check-yaml
-        exclude: "{{cookiecutter.project_name}}/mkdocs.yml"
+        exclude: "{{cookiecutter.project_name}}/*"
     -   id: check-added-large-files
     -   id: debug-statements
     -   id: name-tests-test
