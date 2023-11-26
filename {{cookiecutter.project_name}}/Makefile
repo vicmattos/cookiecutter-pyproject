@@ -17,12 +17,14 @@ setup: $(VEXECS)/pre-commit
 
 
 {%- if cookiecutter.documentation_framework == "MKDocs" %}
+
+
 .PHONY: docs-build
 docs-build: $(VEXECS)/mkdocs
 	$(VEXECS)/mkdocs build
-
-
 {%- endif %}
+
+
 .PHONY: clean
 clean: $(VEXECS)/cleanpy
 	rm -rf site/
