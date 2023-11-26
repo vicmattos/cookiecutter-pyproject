@@ -46,6 +46,6 @@ def text_in_file():
         Check if text is inside file
         """
         with open(file) as f:
-            ret = any(txt in l for l in f)
+            ret = any(txt in line for line in f)
             return not ret if negate else ret
     return text_in_file

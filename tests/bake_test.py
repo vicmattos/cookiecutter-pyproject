@@ -66,5 +66,5 @@ def test_bake_no_docs_framework(cookies, bake_in_temp_dir, text_in_file):
         makefile = result.project_path / 'Makefile'
         assert text_in_file('mkdocs', makefile, negate=True)
 
-        gh_workflow: Paht = result.project_path / '.github' / 'workflows' / 'docs.yml'
+        gh_workflow = result.project_path / '.github' / 'workflows' / 'docs.yml'
         assert not gh_workflow.exists()
