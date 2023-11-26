@@ -16,11 +16,13 @@ setup: $(VEXECS)/pre-commit
 	$(VEXECS)/pre-commit install --install-hooks --overwrite
 
 
+{%- if cookiecutter.documentation_framework == "MKDocs" %}
 .PHONY: docs-build
 docs-build: $(VEXECS)/mkdocs
 	$(VEXECS)/mkdocs build
 
 
+{%- endif %}
 .PHONY: clean
 clean: $(VEXECS)/cleanpy
 	rm -rf site/

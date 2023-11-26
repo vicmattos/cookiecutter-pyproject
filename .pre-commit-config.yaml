@@ -5,6 +5,7 @@ repos:
     -   id: trailing-whitespace
     -   id: end-of-file-fixer
     -   id: check-toml
+        exclude: "{{cookiecutter.project_name}}/pyproject.toml"
     -   id: check-yaml
         exclude: "{{cookiecutter.project_name}}/mkdocs.yml"
     -   id: check-added-large-files

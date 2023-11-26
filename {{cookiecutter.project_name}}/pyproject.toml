@@ -8,5 +8,7 @@ dev = [
     "pip-tools",
     "cleanpy",
     "pre-commit",
+{%- if cookiecutter.documentation_framework == "MKDocs" %}
     "mkdocs-material",
+{%- endif %}
 ]
