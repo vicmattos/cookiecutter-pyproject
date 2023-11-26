@@ -1,16 +1,15 @@
 from __future__ import annotations
 from pathlib import Path
 from shutil import rmtree
-import tomli
-import tomli_w
+import tomlkit
 
 
 def toml_handler(filepath: Path) -> tuple[dict, callable]:
-    with open(filepath, 'rb') as f:
-        config = tomli.load(f)
+    with open(filepath, 'rt') as f:
+        config = tomlkit.load(f)
     def writer(config):
-        with open(filepath, 'wb') as f:
-            tomli_w.dump(pytoml, f)
+        with open(filepath, 'wt') as f:
+            tomlkit.dump(pytoml, f)
     return config, writer
 
 
