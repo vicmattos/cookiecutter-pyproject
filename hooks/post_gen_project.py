@@ -23,5 +23,6 @@ if __name__ == "__main__":
     if '{{cookiecutter.documentation_framework}}' == 'No documentation':
         rmtree("docs/")
         Path("mkdocs.yml").unlink()
+        Path(".github/workflows/docs.yml").unlink()
         pytoml, writer = toml_handler(Path('pyproject.toml'))
         writer(pytoml['project']['optional-dependencies']['dev'].remove("mkdocs-material"))
