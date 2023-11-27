@@ -41,6 +41,7 @@ docs-serve: $(VEXECS)/mkdocs
 clean:
 	rm -rf site/
 	rm -rf $(BAKE_OUTPUT)
+	rm -rf .ruff_cache/
 	$(VEXECS)/cleanpy --all --exclude-envs .
 
 

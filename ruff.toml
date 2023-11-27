@@ -1,3 +1,5 @@
+fix = true
+line-length = 100
 exclude = [
     ".git",
     ".eggs",
@@ -8,8 +10,6 @@ exclude = [
     ".venv",
     "cookiecutter.",
 ]
-fix = true
-line-length = 100
 
 [format]
 quote-style = "single"
