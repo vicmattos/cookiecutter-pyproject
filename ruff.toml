@@ -1,0 +1,18 @@
+exclude = [
+    ".git",
+    ".eggs",
+    ".mypy_cache",
+    ".ruff_cache",
+    ".pytest_cache",
+    "__pypackages__",
+    ".venv",
+    "cookiecutter.",
+]
+fix = true
+line-length = 100
+
+[format]
+quote-style = "single"
+
+[lint.isort]
+force-single-line = true
