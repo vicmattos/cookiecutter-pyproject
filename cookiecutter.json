@@ -1,16 +1,22 @@
 {
+  "full_name": "Victor Mattos",
+  "email": "5757883+vicmattos@users.noreply.github.com",
+  "github_username": "vicmattos",
   "project_name": "My Project",
   "project_folder": "{{ cookiecutter.project_name.lower().replace(' ', '-').replace('-', '-') }}",
   "project_slug": "{{ cookiecutter.project_name.lower().replace(' ', '_').replace('-', '_') }}",
   "python_version": ["3.11", "3.10", "3.9", "3.8"],
-  "full_name": "Victor Mattos",
-  "open_source_license": ["MIT license", "BSD license", "ISC license", "Apache Software License 2.0", "GNU General Public License v3", "Not open source"],
   "documentation_framework": ["MKDocs", "No documentation"],
+  "open_source_license": ["MIT license", "BSD license", "ISC license", "Apache Software License 2.0", "GNU General Public License v3", "Not open source"],
   "__prompts__": {
-    "project_name": "The name of the project (and directory name of it)",
-    "project_slug": "Project slug [bold yellow]in lower case with `_`[/]",
-    "python_version": "The version of python",
     "full_name": "Enter your full name",
-    "open_source_license": "Choose your OSS license"
+    "email": "Enter your e-mail",
+    "github_username": "Enter your github user",
+    "project_name": "Enter project name",
+    "project_folder": "Enter folder name",
+    "project_slug": "Enter project slug [bold yellow]in lower case with `_`[/]",
+    "python_version": "Choose python version",
+    "documentation_framework": "Choose documentation framework",
+    "open_source_license": "Choose OSS license"
   }
 }

@@ -1,6 +1,9 @@
 [project]
 name = "{{ cookiecutter.project_slug }}"
 version = "0.0.1"
+authors = [
+    {name = "{{ cookiecutter.full_name }}", email = "{{ cookiecutter.email }}"},
+]
 requires-python = ">={{ cookiecutter.python_version }}"
 
 [project.optional-dependencies]
@@ -12,3 +15,9 @@ dev = [
     "mkdocs-material",
 {%- endif %}
 ]
+
+[project.urls]
+repository = "https://github.com/{{cookiecutter.github_username}}/{{cookiecutter.project_folder}}"
+{%- if cookiecutter.documentation_framework == "MKDocs" %}
+documentation = "https://{{cookiecutter.github_username}}.github.io/{{cookiecutter.project_folder}}"
+{%- endif %}
