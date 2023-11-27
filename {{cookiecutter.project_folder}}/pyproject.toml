@@ -6,6 +6,12 @@ authors = [
 ]
 requires-python = ">={{ cookiecutter.python_version }}"
 
+[project.urls]
+repository = "https://github.com/{{cookiecutter.github_username}}/{{cookiecutter.project_folder}}"
+{%- if cookiecutter.documentation_framework == "MKDocs" %}
+documentation = "https://{{cookiecutter.github_username}}.github.io/{{cookiecutter.project_folder}}"
+{%- endif %}
+
 [project.optional-dependencies]
 dev = [
     "pip-tools",
@@ -19,8 +25,22 @@ dev = [
 [project.scripts]
 {{cookiecutter.project_folder}} = "{{cookiecutter.project_slug}}:cli"
 
-[project.urls]
-repository = "https://github.com/{{cookiecutter.github_username}}/{{cookiecutter.project_folder}}"
-{%- if cookiecutter.documentation_framework == "MKDocs" %}
-documentation = "https://{{cookiecutter.github_username}}.github.io/{{cookiecutter.project_folder}}"
-{%- endif %}
+[tool.ruff]
+include = ["src/**/*.py"]
+fix = true
+line-length = 100
+select = [
+    "A",    # flake8-builtins: check builtins used as variables or parameters
+    "B",    # flake8-bugbear: security warnings
+    "E",    # pycodestyle-errors
+    "F",    # pyflakes
+    "I",    # isort
+    "UP",   # pyupgrade: better syntax for python version
+    "RUF",  # ruff
+]
+
+[tool.ruff.format]
+quote-style = "single"
+
+[tool.ruff.lint.isort]
+force-single-line = true

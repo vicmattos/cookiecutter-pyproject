@@ -21,6 +21,11 @@ install-editable: $(VENV)
 	$(VEXECS)/pip install -e .
 
 
+.PHONY: pre-commit-run
+pre-commit-run: $(VEXECS)/pre-commit
+	$(VEXECS)/pre-commit run --all-files
+
+
 {%- if cookiecutter.documentation_framework == "MKDocs" %}
 
 
