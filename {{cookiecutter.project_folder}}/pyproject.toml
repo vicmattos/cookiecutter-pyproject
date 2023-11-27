@@ -16,6 +16,9 @@ dev = [
 {%- endif %}
 ]
 
+[project.scripts]
+{{cookiecutter.project_folder}} = "{{cookiecutter.project_slug}}:cli"
+
 [project.urls]
 repository = "https://github.com/{{cookiecutter.github_username}}/{{cookiecutter.project_folder}}"
 {%- if cookiecutter.documentation_framework == "MKDocs" %}

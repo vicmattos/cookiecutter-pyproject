@@ -16,6 +16,11 @@ setup: $(VEXECS)/pre-commit
 	$(VEXECS)/pre-commit install --install-hooks --overwrite
 
 
+.PHONY: install-editable
+install-editable: $(VENV)
+	$(VEXECS)/pip install -e .
+
+
 {%- if cookiecutter.documentation_framework == "MKDocs" %}
 
 
