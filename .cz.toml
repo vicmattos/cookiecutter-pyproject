@@ -14,16 +14,17 @@ type = "list"
 name = "change_type"
 message = "Select the type of change you are committing"
 choices = [
-    {value = "fix", name = "fix: A bug fix. Correlates with PATCH in SemVer"},
     {value = "feat", name = "feat: A new feature. Correlates with MINOR in SemVer"},
-    {value = "docs", name = "docs: Documentation only changes"},
-    {value = "style", name = "style: Changes that do not affect the meaning of the code (white-space, formatting, missing semi-colons, etc)"},
+    {value = "fix", name = "fix: A bug fix. Correlates with PATCH in SemVer"},
     {value = "refactor", name = "refactor: A code change that neither fixes a bug nor adds a feature"},
+    {value = "docs", name = "docs: Documentation only changes"},
     {value = "perf", name = "perf: A code change that improves performance"},
+    {value = "style", name = "style: Changes that do not affect the meaning of the code (white-space, formatting, missing semi-colons, etc)"},
     {value = "test", name = "test: Adding missing or correcting existing tests"},
     {value = "build", name = "build: Changes that affect the build system or external dependencies (cookiecutter, pip, docker, etc)"},
     {value = "ci", name = "ci: Changes to CI configuration files and scripts (github actions, pre-commit, make, etc)"},
     {value = "chore", name = "chore: Changes to project configuration (.editorconfig, pyproject.toml, .gitignore, etc)"},
+    {value = "revert", name = "revert: Undo changes made in previous commits"},
 ]
 
 [[tool.commitizen.customize.questions]]
