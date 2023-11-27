@@ -44,3 +44,7 @@ quote-style = "single"
 
 [tool.ruff.lint.isort]
 force-single-line = true
+
+[tool.mypy]
+files = "src/**/*.py"
+check_untyped_defs = true
