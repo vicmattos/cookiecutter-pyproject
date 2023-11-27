@@ -37,6 +37,13 @@ docs-serve: $(VEXECS)/mkdocs
 	$(VEXECS)/mkdocs serve
 
 
+.PHONY: commit
+commit: $(VEXECS)/cz
+	$(VEXECS)/cz commit --dry-run --write-message-to-file .commit-message.txt
+	git commit --file .commit-message.txt
+	rm -f .commit-message.txt
+
+
 .PHONY: clean
 clean:
 	rm -rf site/
