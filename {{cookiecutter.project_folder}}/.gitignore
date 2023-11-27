@@ -1,3 +1,4 @@
 virtualenv.pyz
 .venv
 site/
+.commit-message.txt

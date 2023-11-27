@@ -35,6 +35,13 @@ docs-build: $(VEXECS)/mkdocs
 {%- endif %}
 
 
+.PHONY: commit
+commit: $(VEXECS)/cz
+	$(VEXECS)/cz commit --dry-run --write-message-to-file .commit-message.txt
+	git commit --file .commit-message.txt
+	rm -f .commit-message.txt
+
+
 .PHONY: clean
 clean: $(VEXECS)/cleanpy
 	rm -rf site/
