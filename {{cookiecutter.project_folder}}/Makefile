@@ -44,6 +44,11 @@ endif
 	git commit --file .cz-msg && rm -f .cz-msg || rm -f .cz-msg
 
 
+.PHONY: bumpver.%
+bumpver.%: $(VEXECS)/cz
+	$(VEXECS)/cz bump --yes --files-only --increment $*
+
+
 .PHONY: clean
 clean: $(VEXECS)/cleanpy
 	rm -rf site/

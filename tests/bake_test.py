@@ -120,3 +120,18 @@ def test_bake_cli_typer_as_dependency(
         assert text_in_file('typer', pyproject_toml, not_in=is_not_present)
         source_code = result.project_path / 'src' / 'project_slug.py'
         assert text_in_file('typer', source_code, not_in=is_not_present)
+
+
+@pytest.mark.slow
+def test_run_bump_version(cookies, bake_in_temp_dir, run_inside_dir, text_in_file):
+    with bake_in_temp_dir(cookies) as result:
+        run_inside_dir('git init .', result.project_path)
+        run_inside_dir('git commit --allow-empty -n -m "first"', result.project_path)
+        pyproject_toml = result.project_path / 'pyproject.toml'
+
+        assert run_inside_dir('make bumpver.patch', result.project_path) == 0
+        assert text_in_file('version = "0.0.2"', pyproject_toml)
+        assert run_inside_dir('make bumpver.minor', result.project_path) == 0
+        assert text_in_file('version = "0.1.0"', pyproject_toml)
+        assert run_inside_dir('make bumpver.major', result.project_path) == 0
+        assert text_in_file('version = "1.0.0"', pyproject_toml)
