@@ -37,6 +37,9 @@ docs-build: $(VEXECS)/mkdocs
 
 .PHONY: commit
 commit: $(VEXECS)/cz
+ifeq ($(shell git diff --name-only --cached),)
+	$(error Git stage empty. Add files to commit.)
+endif
 	$(VEXECS)/cz commit --dry-run --write-message-to-file .commit-message.txt
 	git commit --file .commit-message.txt
 	rm -f .commit-message.txt

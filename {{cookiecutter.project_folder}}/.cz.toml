@@ -5,7 +5,7 @@ version_scheme = "semver"
 version_provider = "scm"
 
 [tool.commitizen.customize]
-message_template = "{{change_type}}{% if scope != '' %}({{scope}}){% endif %}: {{message}}"
+message_template = {% raw %}"{{change_type}}{% if scope != '' %}({{scope}}){% endif %}: {{message}}"{% endraw %}
 example = "ci(dev): add commitizen to automate commit message build"
 schema = "<type>(<scope>): <body>"
 
