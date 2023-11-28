@@ -43,12 +43,12 @@ def run_inside_dir():
 
 @pytest.fixture
 def text_in_file():
-    def text_in_file(txt: str, file: Path, negate: bool = False) -> bool:
+    def text_in_file(txt: str, file: Path, not_in: bool = False) -> bool:
         """
         Check if text is inside file
         """
         with open(file) as f:
             ret = any(txt in line for line in f)
-            return not ret if negate else ret
+            return not ret if not_in else ret
 
     return text_in_file

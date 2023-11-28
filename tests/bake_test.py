@@ -61,10 +61,10 @@ def test_bake_no_docs_framework(cookies, bake_in_temp_dir, text_in_file):
         assert 'docs/' not in found_toplevel_files
 
         pyproject_toml = result.project_path / 'pyproject.toml'
-        assert text_in_file('mkdocs-material', pyproject_toml, negate=True)
+        assert text_in_file('mkdocs-material', pyproject_toml, not_in=True)
 
         makefile = result.project_path / 'Makefile'
-        assert text_in_file('mkdocs', makefile, negate=True)
+        assert text_in_file('mkdocs', makefile, not_in=True)
 
         gh_workflow = result.project_path / '.github' / 'workflows' / 'docs.yml'
         assert not gh_workflow.exists()
@@ -118,6 +118,6 @@ def test_bake_cli_typer_as_dependency(
         cookies, extra_context={'project_slug': 'project_slug', 'command_line_interface': cli_tool}
     ) as result:
         pyproject_toml = result.project_path / 'pyproject.toml'
-        assert text_in_file('typer', pyproject_toml, negate=is_not_present)
+        assert text_in_file('typer', pyproject_toml, not_in=is_not_present)
         source_code = result.project_path / 'src' / 'project_slug.py'
-        assert text_in_file('typer', source_code, negate=is_not_present)
+        assert text_in_file('typer', source_code, not_in=is_not_present)
