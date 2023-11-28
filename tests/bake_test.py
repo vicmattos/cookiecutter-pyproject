@@ -109,15 +109,13 @@ def test_run_pre_commit(cookies, bake_in_temp_dir, run_inside_dir):
         ('Typer', False),
         ('Argparse', True),
         ('No command-line interface', True),
-    ]
+    ],
 )
-def test_bake_cli_typer_as_dependency(cookies, bake_in_temp_dir, text_in_file, cli_tool, is_not_present):
+def test_bake_cli_typer_as_dependency(
+    cookies, bake_in_temp_dir, text_in_file, cli_tool, is_not_present
+):
     with bake_in_temp_dir(
-        cookies,
-        extra_context={
-            'project_slug': 'project_slug',
-            'command_line_interface': cli_tool
-        }
+        cookies, extra_context={'project_slug': 'project_slug', 'command_line_interface': cli_tool}
     ) as result:
         pyproject_toml = result.project_path / 'pyproject.toml'
         assert text_in_file('typer', pyproject_toml, negate=is_not_present)

@@ -1,4 +1,3 @@
-
 from contextlib import contextmanager
 from pathlib import Path
 import os
@@ -7,6 +6,7 @@ import shlex
 
 import pytest
 from cookiecutter.utils import rmtree
+
 
 @pytest.fixture
 def bake_in_temp_dir():
@@ -20,6 +20,7 @@ def bake_in_temp_dir():
             yield result
         finally:
             rmtree(str(result.project_path))
+
     return bake_in_temp_dir
 
 
@@ -36,16 +37,18 @@ def run_inside_dir():
         finally:
             os.chdir(old_path)
         return ret
+
     return run_inside_dir
 
 
 @pytest.fixture
 def text_in_file():
-    def text_in_file(txt: str, file: Path, negate:bool = False) -> bool:
+    def text_in_file(txt: str, file: Path, negate: bool = False) -> bool:
         """
         Check if text is inside file
         """
         with open(file) as f:
             ret = any(txt in line for line in f)
             return not ret if negate else ret
+
     return text_in_file

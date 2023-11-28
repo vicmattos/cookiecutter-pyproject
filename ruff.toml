@@ -8,7 +8,6 @@ exclude = [
     ".pytest_cache",
     "__pypackages__",
     ".venv",
-    "cookiecutter.",
 ]
 
 [format]
