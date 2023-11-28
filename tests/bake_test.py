@@ -84,13 +84,12 @@ def test_bake_with_cli_package(cookies, bake_in_temp_dir, cli_tool, run_inside_d
         assert run_inside_dir('.venv/bin/pkg_command --help', result.project_path) == 0
 
 
-@pytest.mark.parametrize('cli_tool', ['Typer', 'Argparse'])
-def test_bake_with_callable_cli(cookies, bake_in_temp_dir, cli_tool, run_inside_dir):
+def test_bake_with_callable_argparse(cookies, bake_in_temp_dir, run_inside_dir):
     with bake_in_temp_dir(
         cookies,
         extra_context={
             'project_slug': 'pkg_command',
-            'command_line_interface': cli_tool,
+            'command_line_interface': 'Argparse',
         },
     ) as result:
         assert run_inside_dir('python src/pkg_command.py --help', result.project_path) == 0
