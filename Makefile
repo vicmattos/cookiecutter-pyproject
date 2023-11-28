@@ -42,9 +42,8 @@ commit: $(VEXECS)/cz
 ifeq ($(shell git diff --name-only --cached),)
 	$(error Git stage empty. Add files to commit.)
 endif
-	$(VEXECS)/cz commit --dry-run --write-message-to-file .commit-message.txt
-	git commit --file .commit-message.txt
-	rm -f .commit-message.txt
+	$(VEXECS)/cz commit --dry-run --write-message-to-file .cz-msg
+	git commit --file .cz-msg && rm -f .cz-msg || rm -f .cz-msg
 
 
 .PHONY: clean
