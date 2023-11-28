@@ -5,6 +5,11 @@ authors = [
     {name = "{{ cookiecutter.full_name }}", email = "{{ cookiecutter.email }}"},
 ]
 requires-python = ">={{ cookiecutter.python_version }}"
+{%- if cookiecutter.command_line_interface|lower == 'typer' %}
+dependencies = [
+    "typer[all]",
+]
+{%- endif %}
 
 [project.urls]
 repository = "https://github.com/{{cookiecutter.github_username}}/{{cookiecutter.project_folder}}"
@@ -24,7 +29,11 @@ dev = [
 ]
 
 [project.scripts]
+{%- if cookiecutter.command_line_interface|lower == 'typer' %}
+{{cookiecutter.project_folder}} = "{{cookiecutter.project_slug}}:main"
+{%- elif cookiecutter.command_line_interface|lower == 'argparse' %}
 {{cookiecutter.project_folder}} = "{{cookiecutter.project_slug}}:cli"
+{%- endif %}
 
 [tool.ruff]
 include = ["src/**/*.py"]
