@@ -5,7 +5,7 @@ authors = [
     {name = "{{ cookiecutter.full_name }}", email = "{{ cookiecutter.email }}"},
 ]
 requires-python = ">={{ cookiecutter.python_version }}"
-{%- if cookiecutter.command_line_interface|lower == 'typer' %}
+{%- if cookiecutter.command_line_interface == 'Typer' %}
 dependencies = [
     "typer[all]",
 ]
@@ -29,9 +29,9 @@ dev = [
 ]
 
 [project.scripts]
-{%- if cookiecutter.command_line_interface|lower == 'typer' %}
+{%- if cookiecutter.command_line_interface == 'Typer' %}
 {{cookiecutter.project_folder}} = "{{cookiecutter.project_slug}}:main"
-{%- elif cookiecutter.command_line_interface|lower == 'argparse' %}
+{%- elif cookiecutter.command_line_interface == 'Argparse' %}
 {{cookiecutter.project_folder}} = "{{cookiecutter.project_slug}}:cli"
 {%- endif %}
 
