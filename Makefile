@@ -24,12 +24,12 @@ bake: $(VEXECS)/cookiecutter
 
 .PHONY: test
 test: $(VEXECS)/pytest
-	$(VEXECS)/pytest -m "not slow"
+	$(VEXECS)/pytest -n auto -m "not slow"
 
 
 .PHONY: test-all
 test-all: $(VEXECS)/pytest
-	$(VEXECS)/pytest
+	$(VEXECS)/pytest -n auto
 
 
 .PHONY: docs-serve
