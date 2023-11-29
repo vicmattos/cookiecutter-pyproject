@@ -3,6 +3,8 @@ name: Pre-commit auto-update
 on:
   schedule:
     - cron: '0 0 * * *'
+  # Enable manual execution
+  workflow_dispatch:
 
 jobs:
   auto-update:
