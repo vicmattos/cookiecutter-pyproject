@@ -32,10 +32,9 @@ jobs:
         uses: peter-evans/create-pull-request@v5
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
-          branch: workflow/pre-commit
-          title: Auto-update pre-commit hooks
+          base: main
+          branch: dependency/pre-commit
+          title: Autoupdate pre-commit hooks
           commit-message: Auto-update pre-commit hooks
-          body: |
-            Update versions of tools in pre-commit
-            configs to latest version
+          body: Update versions of tools in pre-commit configs to latest version
           labels: dependencies,pre-commit
