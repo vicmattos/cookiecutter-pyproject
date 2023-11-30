@@ -14,7 +14,7 @@ jobs:
   auto-update:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
 
       - name: Configure Git Credentials
         run: |
@@ -22,7 +22,7 @@ jobs:
           git config user.email 41898282+github-actions[bot]@users.noreply.github.com
 
       - name: Set up Python
-        uses: actions/setup-python@v2
+        uses: actions/setup-python@v4
         with:
           python-version: "3.11"
 
@@ -33,7 +33,7 @@ jobs:
         run: pre-commit autoupdate
 
       - name: Create Pull Request
-        uses: peter-evans/create-pull-request@v2
+        uses: peter-evans/create-pull-request@v5
         with:
           token: {% raw -%}${{ secrets.GITHUB_TOKEN }}{%- endraw %}
           base: {% raw -%}${{ github.ref_name }}{%- endraw %}
