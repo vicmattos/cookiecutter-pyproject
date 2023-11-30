@@ -26,6 +26,11 @@ pre-commit-run: $(VEXECS)/pre-commit
 	$(VEXECS)/pre-commit run --all-files
 
 
+.PHONY: test
+test: $(VEXECS)/pytest
+	$(VEXECS)/pytest
+
+
 {%- if cookiecutter.documentation_framework == "MKDocs" %}
 
 

@@ -1,7 +1,10 @@
 {%- if cookiecutter.command_line_interface == 'Typer' %}
 import typer
 
+app = typer.Typer()
 
+
+@app.command()
 def main(verbose: bool = False):
     if verbose:
         typer.echo(f"Arguments: {locals().keys()}")
@@ -21,7 +24,7 @@ class Args(argparse.Namespace):
 
 
 def main(args: Args) -> None:
-    if args.get("verbose", False):
+    if args.verbose:
         print(f"Arguments: {str(args)}")
     print(f"Replace this message by putting your code into src/{{cookiecutter.project_slug}}.py")
 

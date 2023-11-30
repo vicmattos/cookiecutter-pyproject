@@ -23,6 +23,7 @@ dev = [
     "pip-tools",
     "cleanpy",
     "pre-commit",
+    "pytest",
 {%- if cookiecutter.documentation_framework == "MKDocs" %}
     "mkdocs-material",
 {%- endif %}
@@ -36,6 +37,11 @@ dev = [
 {%- elif cookiecutter.command_line_interface == 'Argparse' %}
 {{cookiecutter.project_folder}} = "{{cookiecutter.project_slug}}:cli"
 {%- endif %}
+{%- endif %}
+
+{%- if cookiecutter.is_package %}
+[tool.pytest.ini_options]
+pythonpath = "src"
 {%- endif %}
 
 [tool.ruff]

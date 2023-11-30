@@ -149,3 +149,15 @@ def test_is_package(cookies, bake_in_temp_dir, text_in_file):
         assert 'src/' not in found_toplevel_files
         pyproject_toml = result.project_path / 'pyproject.toml'
         assert text_in_file('src', pyproject_toml, not_in=True)
+
+
+@pytest.mark.slow
+@pytest.mark.parametrize('cli_tool', ['Typer', 'Argparse'])
+def test_bake_to_test_cli(cookies, bake_in_temp_dir, cli_tool, run_inside_dir):
+    with bake_in_temp_dir(
+        cookies,
+        extra_context={
+            'command_line_interface': cli_tool,
+        },
+    ) as result:
+        assert run_inside_dir('make test', result.project_path) == 0
