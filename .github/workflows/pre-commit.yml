@@ -6,6 +6,9 @@ on:
   # Enable manual execution
   workflow_dispatch:
 
+permissions:
+  pull-requests: write
+
 jobs:
   auto-update:
     runs-on: ubuntu-latest
