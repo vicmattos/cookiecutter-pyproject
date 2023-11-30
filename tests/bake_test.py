@@ -54,7 +54,11 @@ def test_bake_and_run_make_docs_build(cookies, bake_in_temp_dir, run_inside_dir)
 def test_bake_no_docs_framework(cookies, bake_in_temp_dir, text_in_file):
     with bake_in_temp_dir(
         cookies,
-        extra_context={'documentation_framework': 'No documentation'},
+        extra_context={
+            'documentation_framework': 'No documentation',
+            'github_username': 'gh_user',
+            'project_folder': 'some_folder',
+        },
     ) as result:
         found_toplevel_files = [f.name for f in result.project_path.iterdir()]
         assert 'mkdocs.yml' not in found_toplevel_files
@@ -62,6 +66,8 @@ def test_bake_no_docs_framework(cookies, bake_in_temp_dir, text_in_file):
 
         pyproject_toml = result.project_path / 'pyproject.toml'
         assert text_in_file('mkdocs-material', pyproject_toml, not_in=True)
+        assert text_in_file('mkdocs-material', pyproject_toml, not_in=True)
+        assert text_in_file('https://gh_user.github.io/some_folder', pyproject_toml, not_in=True)
 
         makefile = result.project_path / 'Makefile'
         assert text_in_file('mkdocs', makefile, not_in=True)
