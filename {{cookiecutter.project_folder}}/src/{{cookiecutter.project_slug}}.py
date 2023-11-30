@@ -16,17 +16,20 @@ import argparse
 from collections.abc import Sequence
 
 
-def main(args) -> None:
-    if args.verbose:
+class Args(argparse.Namespace):
+    verbose: bool = False
+
+
+def main(args: Args) -> None:
+    if args.get("verbose", False):
         print(f"Arguments: {str(args)}")
     print(f"Replace this message by putting your code into src/{{cookiecutter.project_slug}}.py")
 
 
 def cli(argv: Sequence[str] | None = None) -> int:
     parser = argparse.ArgumentParser()
-    parser.add_argument('_', nargs='*')
     parser.add_argument('-v', '--verbose', action='store_true')
-    args = parser.parse_args(argv)
+    args: Args = parser.parse_args(argv)
     main(args)
     return 0
 
