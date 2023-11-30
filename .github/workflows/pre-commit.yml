@@ -36,7 +36,7 @@ jobs:
         uses: peter-evans/create-pull-request@v5
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
-          base: main
+          base: ${{ github.ref_name }}
           branch: dependency/pre-commit
           title: Autoupdate pre-commit hooks
           commit-message: Auto-update pre-commit hooks
