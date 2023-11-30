@@ -35,8 +35,8 @@ jobs:
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v5
         with:
-          token: {% raw -%}${{ secrets.GITHUB_TOKEN }}{%- endraw %}
-          base: {% raw -%}${{ github.ref_name }}{%- endraw %}
+          token: ${{ secrets.GITHUB_TOKEN }}
+          base: ${{ github.ref_name }}
           branch: dependency/pre-commit
           commit-message: 'ci(pre-commit): run `pre-commit autoupdate`'
           title: Autoupdate pre-commit hooks

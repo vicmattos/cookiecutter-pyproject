@@ -22,5 +22,6 @@
     "command_line_interface": "[bold yellow]If is package[/], choose cli framework",
     "documentation_framework": "Choose documentation framework",
     "open_source_license": "Choose OSS license"
-  }
+  },
+  "_copy_without_render": [".github/workflows/*.yml"]
 }
