@@ -12,10 +12,11 @@ dependencies = [
 {%- endif %}
 
 [project.urls]
-repository = "https://github.com/{{cookiecutter.github_username}}/{{cookiecutter.project_folder}}"
 {%- if cookiecutter.documentation_framework == "MKDocs" %}
+homepage = "https://{{cookiecutter.github_username}}.github.io/{{cookiecutter.project_folder}}"
 documentation = "https://{{cookiecutter.github_username}}.github.io/{{cookiecutter.project_folder}}"
 {%- endif %}
+repository = "https://github.com/{{cookiecutter.github_username}}/{{cookiecutter.project_folder}}"
 
 [project.optional-dependencies]
 dev = [
