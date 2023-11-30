@@ -11,3 +11,6 @@ if __name__ == '__main__':
         rmtree('docs/')
         Path('mkdocs.yml').unlink()
         Path('.github/workflows/docs.yml').unlink()
+
+    if not {{cookiecutter.is_package}}:  # noqa: F821
+        rmtree('src/')

@@ -5,7 +5,7 @@ authors = [
     {name = "{{ cookiecutter.full_name }}", email = "{{ cookiecutter.email }}"},
 ]
 requires-python = ">={{ cookiecutter.python_version }}"
-{%- if cookiecutter.command_line_interface == 'Typer' %}
+{%- if cookiecutter.command_line_interface == 'Typer' and cookiecutter.is_package %}
 dependencies = [
     "typer[all]",
 ]
@@ -29,15 +29,19 @@ dev = [
     "commitizen",
 ]
 
+{%- if cookiecutter.is_package %}
 [project.scripts]
 {%- if cookiecutter.command_line_interface == 'Typer' %}
 {{cookiecutter.project_folder}} = "{{cookiecutter.project_slug}}:main"
 {%- elif cookiecutter.command_line_interface == 'Argparse' %}
 {{cookiecutter.project_folder}} = "{{cookiecutter.project_slug}}:cli"
 {%- endif %}
+{%- endif %}
 
 [tool.ruff]
+{%- if cookiecutter.is_package %}
 include = ["src/**/*.py"]
+{%- endif %}
 fix = true
 line-length = 100
 select = [
@@ -57,5 +61,7 @@ quote-style = "single"
 force-single-line = true
 
 [tool.mypy]
+{%- if cookiecutter.is_package %}
 files = "src/**/*.py"
+{%- endif %}
 check_untyped_defs = true
