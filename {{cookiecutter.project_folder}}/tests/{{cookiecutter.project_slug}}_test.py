@@ -1,19 +1,15 @@
 {%- if cookiecutter.command_line_interface == 'Typer' %}
-from typer.testing import CliRunner
-
 from {{cookiecutter.project_slug}} import app
 
-runner = CliRunner()
 
-
-def test_cli_default():
-    result = runner.invoke(app)
+def test_cli_default(cli_runner):
+    result = cli_runner.invoke(app)
     assert result.exit_code == 0
     output = 'Replace this message by putting your code into src/{{cookiecutter.project_slug}}.py'
     assert output in result.stdout
 
-def test_cli_verbose():
-    result = runner.invoke(app, ["--verbose"])
+def test_cli_verbose(cli_runner):
+    result = cli_runner.invoke(app, ["--verbose"])
     assert result.exit_code == 0
     assert 'Arguments:' in result.stdout
 {%- elif cookiecutter.command_line_interface == 'Argparse' %}
