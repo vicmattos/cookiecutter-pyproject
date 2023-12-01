@@ -12,8 +12,10 @@ def test_cli_verbose(cli_runner):
     result = cli_runner.invoke(app, ["--verbose"])
     assert result.exit_code == 0
     assert 'Arguments:' in result.stdout
+    result = cli_runner.invoke(app)
+    assert result.exit_code == 0
+    assert 'Arguments:' not in result.stdout
 {%- elif cookiecutter.command_line_interface == 'Argparse' %}
-from my_project import Args
 from my_project import main
 
 
@@ -23,6 +25,8 @@ def test_cli_default(capsys, default_args):
     assert output in capsys.readouterr().out
 
 def test_cli_verbose(capsys, default_args):
+    main(default_args)
+    assert 'Arguments:' not in capsys.readouterr().out
     default_args.verbose = True
     main(default_args)
     assert 'Arguments:' in capsys.readouterr().out
