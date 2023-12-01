@@ -31,7 +31,7 @@ def test_bake_with_callable_argparse(cookies, bake_in_temp_dir, run_inside_dir):
     [
         ('Typer', False),
         ('Argparse', True),
-        ('No command-line interface', True),
+        ('No cli', True),
     ],
 )
 def test_bake_cli_typer_as_dependency(
