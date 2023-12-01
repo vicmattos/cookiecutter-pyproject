@@ -44,15 +44,3 @@ def test_bake_cli_typer_as_dependency(
         assert text_in_file('typer', pyproject_toml, not_in=is_not_present)
         source_code = result.project_path / 'src' / 'project_slug.py'
         assert text_in_file('typer', source_code, not_in=is_not_present)
-
-
-@pytest.mark.slow
-@pytest.mark.parametrize('cli_tool', ['Typer', 'Argparse'])
-def test_bake_test_cli(cookies, bake_in_temp_dir, cli_tool, run_inside_dir):
-    with bake_in_temp_dir(
-        cookies,
-        extra_context={
-            'command_line_interface': cli_tool,
-        },
-    ) as result:
-        assert run_inside_dir('make test', result.project_path) == 0

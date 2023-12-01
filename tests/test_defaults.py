@@ -28,6 +28,18 @@ def test_bake_and_run_make_setup(cookies, bake_in_temp_dir, run_inside_dir):
 
 
 @pytest.mark.slow
+@pytest.mark.parametrize('cli_tool', ['Typer', 'Argparse', 'No cli'])
+def test_bake_and_test(cookies, bake_in_temp_dir, cli_tool, run_inside_dir):
+    with bake_in_temp_dir(
+        cookies,
+        extra_context={
+            'command_line_interface': cli_tool,
+        },
+    ) as result:
+        assert run_inside_dir('make test', result.project_path) == 0
+
+
+@pytest.mark.slow
 def test_run_pre_commit(cookies, bake_in_temp_dir, run_inside_dir):
     with bake_in_temp_dir(cookies) as result:
         run_inside_dir('git init .', result.project_path)
