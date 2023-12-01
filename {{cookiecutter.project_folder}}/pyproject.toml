@@ -30,7 +30,8 @@ dev = [
     "commitizen",
 ]
 
-{%- if cookiecutter.is_package %}
+{%- if cookiecutter.is_package and cookiecutter.command_line_interface != 'No cli' %}
+
 [project.scripts]
 {%- if cookiecutter.command_line_interface == 'Typer' %}
 {{cookiecutter.project_folder}} = "{{cookiecutter.project_slug}}:main"
@@ -40,6 +41,7 @@ dev = [
 {%- endif %}
 
 {%- if cookiecutter.is_package %}
+
 [tool.pytest.ini_options]
 pythonpath = "src"
 {%- endif %}

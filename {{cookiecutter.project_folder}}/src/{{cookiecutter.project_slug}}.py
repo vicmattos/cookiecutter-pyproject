@@ -39,4 +39,15 @@ def cli(argv: Sequence[str] | None = None) -> int:
 
 if __name__ == '__main__':
     raise SystemExit(cli())
+
+{%- else %}
+def main(verbose: bool = False):
+    if verbose:
+        print(f"Arguments: verbose={verbose}")
+    print(f"Replace this message by putting your code into src/{{cookiecutter.project_slug}}.py")
+
+
+if __name__ == '__main__':
+    raise SystemExit(main())
+
 {%- endif %}

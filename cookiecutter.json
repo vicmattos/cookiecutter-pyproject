@@ -7,7 +7,7 @@
   "python_version": ["3.11", "3.10", "3.9", "3.8"],
   "project_slug": "{{ cookiecutter.project_name.lower().replace(' ', '_').replace('-', '_') }}",
   "is_package": true,
-  "command_line_interface": ["Typer", "Argparse", "No command-line interface"],
+  "command_line_interface": ["Typer", "Argparse", "No cli"],
   "documentation_framework": ["MKDocs", "No documentation"],
   "open_source_license": ["MIT license", "BSD license", "ISC license", "Apache Software License 2.0", "GNU General Public License v3", "Not open source"],
   "__prompts__": {
@@ -19,7 +19,7 @@
     "python_version": "Choose python version",
     "project_slug": "Enter project slug [bold yellow]in lower case with `_`[/]",
     "is_package": "Is it a package (create src/ folder)",
-    "command_line_interface": "[bold yellow]If is package[/], choose cli framework",
+    "command_line_interface": "[bold yellow]If is package[/], choose command line interface framework",
     "documentation_framework": "Choose documentation framework",
     "open_source_license": "Choose OSS license"
   },
