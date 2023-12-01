@@ -11,7 +11,6 @@ repos:
     -   id: check-added-large-files
     -   id: debug-statements
         exclude: "{{cookiecutter.project_folder}}"
-    -   id: name-tests-test
 
 -   repo: https://github.com/python-jsonschema/check-jsonschema
     rev: 0.27.2
