@@ -3,4 +3,4 @@ theme:
   name: material
 
 copyright: |
-  &copy; 2023 {{ cookiecutter.full_name }}
+  &copy; 2023 <a href="https://github.com/{{cookiecutter.github_username}}"  target="_blank" rel="noopener">{{ cookiecutter.full_name }}</a>
