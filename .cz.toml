@@ -8,6 +8,7 @@ version_provider = "scm"
 message_template = "{{change_type}}({{scope}}): {{message}}"
 example = "ci(dev): add commitizen to automate commit message build"
 schema = "<type>(<scope>): <body>"
+schema_pattern = "^(feat|fix|refactor|docs|perf|style|test|build|ci|chore|revert){1}(\\([\\w\\-\\.]+\\))?(!)?: ([\\w ])+([\\s\\S]*)"
 
 [[tool.commitizen.customize.questions]]
 type = "list"

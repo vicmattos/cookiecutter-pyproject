@@ -26,3 +26,8 @@ repos:
         exclude: "{{cookiecutter.project_folder}}"
     -   id: ruff-format
         exclude: "{{cookiecutter.project_folder}}"
+
+-   repo: https://github.com/commitizen-tools/commitizen
+    rev: 3.12.0
+    hooks:
+    -   id: commitizen
