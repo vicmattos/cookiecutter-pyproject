@@ -1,5 +1,4 @@
 BAKE_OUTPUT=output
-BAKE_OPTIONS=--no-input --output-dir $(BAKE_OUTPUT)
 
 PY = python3
 VENV = .venv
@@ -19,7 +18,7 @@ setup: $(VEXECS)/pre-commit
 
 .PHONY: bake
 bake: $(VEXECS)/cookiecutter
-	$(VEXECS)/cookiecutter $(BAKE_OPTIONS) . --overwrite-if-exists
+	$(VEXECS)/cookiecutter . --no-input --output-dir $(BAKE_OUTPUT) --overwrite-if-exists
 
 
 .PHONY: bake-watch
