@@ -22,6 +22,16 @@ bake: $(VEXECS)/cookiecutter
 	$(VEXECS)/cookiecutter $(BAKE_OPTIONS) . --overwrite-if-exists
 
 
+.PHONY: bake-watch
+bake-watch: $(VEXECS)/watchmedo
+	$(VEXECS)/watchmedo shell-command \
+		--command='make bake' \
+		--recursive \
+		\{\{cookiecutter.project_folder\}\} \
+		hooks \
+		cookiecutter.json
+
+
 .PHONY: test
 test: $(VEXECS)/pytest
 	$(VEXECS)/pytest -n auto -m "not slow"
