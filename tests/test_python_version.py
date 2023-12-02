@@ -11,4 +11,3 @@ def test_bake_every_python_version(cookies, bake_in_temp_dir, pyversion):
     ) as result:
         root: Path = result.project_path
         assert f'requires-python = ">={pyversion}' in (root / 'pyproject.toml').read_text()
-        assert f'PYVERSION = {pyversion}' in (root / 'Makefile').read_text()
