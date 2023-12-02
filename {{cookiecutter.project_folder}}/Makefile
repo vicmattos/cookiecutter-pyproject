@@ -71,6 +71,11 @@ requirements-dev.txt: pyproject.toml $(VEXECS)/pip-compile
 $(VENV): $(VIRTUALENVEXEC)
 	$(PY) $(VIRTUALENVEXEC) $(VENV)
 	$(VEXECS)/pip install --upgrade pip
+ifeq ($(wildcard requirements-dev.txt),)
+	$(VEXECS)/pip install pip-tools
+	make requirements-dev.txt
+endif
+	$(VEXECS)/pip install -r requirements-dev.txt
 
 $(VEXECS)/%: $(VENV) requirements-dev.txt
 	$(VEXECS)/pip install -r requirements-dev.txt

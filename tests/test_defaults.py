@@ -14,10 +14,6 @@ def test_bake_with_defaults(cookies, bake_in_temp_dir, text_in_file):
         assert '.pre-commit-config.yaml' in found_toplevel_files
         assert 'Makefile' in found_toplevel_files
         assert 'pyproject.toml' in found_toplevel_files
-        assert 'requirements-dev.txt' in found_toplevel_files
-
-        requirements_dev = result.project_path / 'requirements-dev.txt'
-        text_in_file('pip-tools\\n', requirements_dev)
 
 
 @pytest.mark.slow
