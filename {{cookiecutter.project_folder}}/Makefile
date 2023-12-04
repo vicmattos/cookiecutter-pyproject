@@ -16,14 +16,14 @@ setup: $(VCOMMAND)/pre-commit
 	$(VCOMMAND)/pre-commit install --install-hooks --overwrite
 
 
-.PHONY: install-editable
-install-editable: $(PYTHON)
-	$(PYTHON) -m pip install -e .
-
-
 .PHONY: pre-commit-run
 pre-commit-run: $(VCOMMAND)/pre-commit
 	$(VCOMMAND)/pre-commit run --all-files
+
+
+.PHONY: install-editable
+install-editable: $(PYTHON)
+	$(PYTHON) -m pip install -e .
 
 
 .PHONY: test
@@ -40,6 +40,11 @@ docs-build: $(PYTHON)
 {%- endif %}
 
 
+.PHONY: bumpver.%
+bumpver.%: $(VCOMMAND)/cz
+	$(VCOMMAND)/cz bump --yes --files-only --increment $*
+
+
 .PHONY: commit
 commit: $(VCOMMAND)/cz
 ifeq ($(shell git diff --name-only --cached),)
@@ -47,11 +52,6 @@ ifeq ($(shell git diff --name-only --cached),)
 endif
 	$(VCOMMAND)/cz commit --dry-run --write-message-to-file .cz-msg
 	git commit --file .cz-msg && rm -f .cz-msg || rm -f .cz-msg
-
-
-.PHONY: bumpver.%
-bumpver.%: $(VCOMMAND)/cz
-	$(VCOMMAND)/cz bump --yes --files-only --increment $*
 
 
 .PHONY: clean
