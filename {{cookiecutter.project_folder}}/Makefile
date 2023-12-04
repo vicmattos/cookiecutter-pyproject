@@ -12,7 +12,13 @@ PYTHON = $(VCOMMAND)/python
 
 
 .PHONY: setup
-setup: $(VCOMMAND)/pre-commit
+setup:
+	make $(PYTHON)
+	make pre-commit-install
+
+
+.PHONY: pre-commit-install
+pre-commit-install: $(VCOMMAND)/pre-commit
 	$(VCOMMAND)/pre-commit install --install-hooks --overwrite
 
 
