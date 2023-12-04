@@ -9,19 +9,25 @@ endif
 PYTHON = $(VEXECS)/python
 
 
+.PHONY: help
+help:  ## Show this help.
+	@grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) \
+		| awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-30s\033[0m %s\n", $$1, $$2}'
+
+
 .PHONY: setup
-setup: $(VEXECS)
+setup: $(VEXECS)  ## Install pre-commit with hooks
 	$(VEXECS)/pre-commit install --install-hooks --overwrite
 
 
 .PHONY: bake
 BAKE_OUTPUT=output
-bake: $(PYTHON)
+bake: $(PYTHON)  ## Call cookiecutter with default options targeting `output/`
 	$(PYTHON) -m cookiecutter . --no-input --output-dir $(BAKE_OUTPUT) --overwrite-if-exists
 
 
 .PHONY: bake-watch
-bake-watch: $(VEXECS)
+bake-watch: $(VEXECS)  ## Execute watchdog's `watchmedo` to "re-bake" whenever some template's relevant file changes
 	$(VEXECS)/watchmedo shell-command \
 		--command='make bake' \
 		--recursive \
@@ -31,22 +37,27 @@ bake-watch: $(VEXECS)
 
 
 .PHONY: test
-test: $(PYTHON)
+test: $(PYTHON)  ## Call pytest with xdist filtering out slow tests
 	$(PYTHON) -m pytest -n auto -m "not slow"
 
 
+.PHONY: test-slow
+test-slow: $(PYTHON)  ## Call pytest with xdist for tests marked as slow
+	$(PYTHON) -m pytest -n auto -m slow
+
+
 .PHONY: test-all
-test-all: $(PYTHON)
+test-all: $(PYTHON)  ## Call pytest with xdist
 	$(PYTHON) -m pytest -n auto
 
 
 .PHONY: docs-serve
-docs-serve: $(PYTHON)
+docs-serve: $(PYTHON)  ## Call mkdocs to serve current docs in local server
 	$(PYTHON) -m mkdocs serve
 
 
 .PHONY: commit
-commit: $(VEXECS)
+commit: $(VEXECS)  ## Execute commitizen's `cz commit` to create commit message and use it in `git commit`
 ifeq ($(shell git diff --name-only --cached),)
 	$(error Git stage empty. Add files to commit.)
 endif
@@ -55,7 +66,7 @@ endif
 
 
 .PHONY: clean
-clean: $(PYTHON)
+clean: $(PYTHON)  ## Call cleanpy skipping envs and `rm -rf` folders `sites/`, `outputs/` and `.ruff_cache`
 	rm -rf site/
 	rm -rf $(BAKE_OUTPUT)
 	rm -rf .ruff_cache/
