@@ -16,7 +16,13 @@ help:  ## Show this help.
 
 
 .PHONY: setup
-setup: $(VEXECS)  ## Install pre-commit with hooks
+setup:  ## Create development environment with venv and pre-commit
+	make $(PYTHON)
+	make pre-commit-install
+
+
+.PHONY: pre-commit-install
+pre-commit-install: $(VEXECS)  ## Execute pre-commit installation of script and hooks
 	$(VEXECS)/pre-commit install --install-hooks --overwrite
 
 
