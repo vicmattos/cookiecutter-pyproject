@@ -47,8 +47,13 @@ test: $(PYTHON)  ## Call pytest
 
 
 .PHONY: docs-build
-docs-build: $(PYTHON)  ## Call mkdocs to serve documentation locally
+docs-build: $(PYTHON)  ## Call mkdocs to build documentation into site/
 	$(PYTHON) -m mkdocs build
+
+
+.PHONY: docs-serve
+docs-serve: $(PYTHON)  ## Call mkdocs to serve documentation locally
+	$(PYTHON) -m mkdocs serve
 {%- endif %}
 
 
