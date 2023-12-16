@@ -4,11 +4,11 @@ VIRTUALENVEXEC = virtualenv.pyz
 VENV = .venv
 # make it work on windows
 ifeq ($(OS), Windows_NT)
-    VCOMMAND = $(VENV)/Scripts
+    VENV_EXEC = $(VENV)/Scripts
 else
-	VCOMMAND = $(VENV)/bin
+	VENV_EXEC = $(VENV)/bin
 endif
-PYTHON = $(VCOMMAND)/python
+PYTHON = $(VENV_EXEC)/python
 
 
 .PHONY: help
@@ -24,13 +24,13 @@ setup:  ## Create development environment with venv and pre-commit
 
 
 .PHONY: pre-commit-install
-pre-commit-install: $(VCOMMAND)/pre-commit  ## Execute pre-commit installation of script and hooks
-	$(VCOMMAND)/pre-commit install --install-hooks --overwrite
+pre-commit-install: $(VENV_EXEC)/pre-commit  ## Execute pre-commit installation of script and hooks
+	$(VENV_EXEC)/pre-commit install --install-hooks --overwrite
 
 
 .PHONY: pre-commit-run
-pre-commit-run: $(VCOMMAND)/pre-commit  ## Execute `pre-commit run` in all files
-	$(VCOMMAND)/pre-commit run --all-files
+pre-commit-run: $(VENV_EXEC)/pre-commit  ## Execute `pre-commit run` in all files
+	$(VENV_EXEC)/pre-commit run --all-files
 
 
 .PHONY: install-editable
@@ -58,16 +58,16 @@ docs-serve: $(PYTHON)  ## Call mkdocs to serve documentation locally
 
 
 .PHONY: bumpver.%
-bumpver.%: $(VCOMMAND)/cz  ## Execute commitizen's `cz bump` with version scope (major, minor, patch) as suffix
-	$(VCOMMAND)/cz bump --yes --files-only --increment $*
+bumpver.%: $(VENV_EXEC)/cz  ## Execute commitizen's `cz bump` with version scope (major, minor, patch) as suffix
+	$(VENV_EXEC)/cz bump --yes --files-only --increment $*
 
 
 .PHONY: commit
-commit: $(VCOMMAND)/cz  ## Execute commitizen's `cz commit` to create commit message and use it in `git commit`
+commit: $(VENV_EXEC)/cz  ## Execute commitizen's `cz commit` to create commit message and use it in `git commit`
 ifeq ($(shell git diff --name-only --cached),)
 	$(error Git stage empty. Add files to commit.)
 endif
-	$(VCOMMAND)/cz commit --dry-run --write-message-to-file .cz-msg
+	$(VENV_EXEC)/cz commit --dry-run --write-message-to-file .cz-msg
 	git commit --file .cz-msg && rm -f .cz-msg || rm -f .cz-msg
 
 
@@ -77,25 +77,25 @@ clean: $(PYTHON)  ## Call cleanpy skipping envs
 	$(PYTHON) -m cleanpy --all --exclude-envs .
 
 
-requirements.txt: pyproject.toml $(VCOMMAND)/pip-compile  ## Execute pip-tools `pip-compile` to create requirements
-	$(VCOMMAND)/pip-compile --strip-extras
+requirements.txt: pyproject.toml $(VENV_EXEC)/pip-compile  ## Execute pip-tools `pip-compile` to create requirements
+	$(VENV_EXEC)/pip-compile --strip-extras
 
 
-requirements-dev.txt: pyproject.toml $(VCOMMAND)/pip-compile  ## Execute pip-tools `pip-compile` to create development requirements
-	$(VCOMMAND)/pip-compile --strip-extras --extra=dev --output-file=requirements-dev.txt
+requirements-dev.txt: pyproject.toml $(VENV_EXEC)/pip-compile  ## Execute pip-tools `pip-compile` to create development requirements
+	$(VENV_EXEC)/pip-compile --strip-extras --extra=dev --output-file=requirements-dev.txt
 
 
 $(PYTHON): $(VENV)
 
-$(VCOMMAND)/%:
+$(VENV_EXEC)/%:
 	make $(VENV)
 
 $(VENV): $(VIRTUALENVEXEC)
 	$(SYSTEM_PYTHON) $(VIRTUALENVEXEC) $(VENV)
-	$(VCOMMAND)/pip install --upgrade pip
+	$(VENV_EXEC)/pip install --upgrade pip
 ifeq ($(wildcard requirements-dev.txt),)  # req don't exist
 	$(PYTHON) -m pip install pip-tools
-	make -B requirements-dev.txt -o $(VCOMMAND)/pip-compile
+	make -B requirements-dev.txt -o $(VENV_EXEC)/pip-compile
 endif
 	$(PYTHON) -m pip install -r requirements-dev.txt
 
