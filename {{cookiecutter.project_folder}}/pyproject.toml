@@ -23,7 +23,9 @@ dev = [
     "pip-tools",
     "cleanpy",
     "pre-commit",
+{%- if cookiecutter.is_package %}
     "pytest",
+{%- endif %}
 {%- if cookiecutter.documentation_framework == "MKDocs" %}
     "mkdocs-material",
 {%- endif %}

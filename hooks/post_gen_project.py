@@ -14,3 +14,4 @@ if __name__ == '__main__':
 
     if not {{cookiecutter.is_package}}:  # noqa: F821
         rmtree('src/')
+        rmtree('tests/')
