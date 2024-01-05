@@ -85,3 +85,5 @@ $(PYTHON):
 	$(VEXECS)/pip install -r requirements-dev.txt
 
 $(VEXECS): $(PYTHON)
+
+$(VENV): $(PYTHON)
