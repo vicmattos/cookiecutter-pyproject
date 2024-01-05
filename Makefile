@@ -28,8 +28,9 @@ pre-commit-install: $(VEXECS)  ## Execute pre-commit installation of script and 
 
 .PHONY: bake
 BAKE_OUTPUT=output
+BAKE_ARGS=--no-input
 bake: $(PYTHON)  ## Call cookiecutter with default options targeting `output/`
-	$(PYTHON) -m cookiecutter . --no-input --output-dir $(BAKE_OUTPUT) --overwrite-if-exists
+	$(PYTHON) -m cookiecutter . --output-dir $(BAKE_OUTPUT) --overwrite-if-exists $(BAKE_ARGS)
 
 
 .PHONY: bake-watch
