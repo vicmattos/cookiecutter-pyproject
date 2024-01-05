@@ -1,4 +1,5 @@
 virtualenv.pyz
 .venv
+*.egg-info/
 site/
 .commit-message.txt
