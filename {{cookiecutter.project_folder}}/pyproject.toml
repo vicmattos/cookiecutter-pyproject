@@ -77,3 +77,11 @@ force-single-line = true
 files = "src/**/*.py"
 {%- endif %}
 check_untyped_defs = true
+
+[build-system]
+requires = ["setuptools", "wheel"]
+build-backend = "setuptools.build_meta"
+{% if not cookiecutter.is_package %}
+[tool.setuptools]
+py-modules = []
+{% endif %}
