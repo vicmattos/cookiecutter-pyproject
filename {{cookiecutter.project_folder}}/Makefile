@@ -73,8 +73,12 @@ endif
 
 .PHONY: clean
 clean: $(PYTHON)  ## Call cleanpy skipping envs
-	rm -rf site/
 	$(PYTHON) -m cleanpy --all --exclude-envs .
+ifeq ($(OS), Windows_NT)
+	rd /s/q site/
+else
+	rm -rf site/
+endif
 
 
 requirements.txt: pyproject.toml $(VENV_EXEC)/pip-compile  ## Execute pip-tools `pip-compile` to create requirements
