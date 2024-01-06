@@ -87,8 +87,7 @@ requirements-dev.txt: pyproject.toml $(VENV_EXEC)/pip-compile  ## Execute pip-to
 
 $(PYTHON): $(VENV)
 
-$(VENV_EXEC)/%:
-	make $(VENV)
+$(VENV_EXEC)/%: $(VENV)
 
 $(VENV): $(VIRTUALENVEXEC)
 	$(SYSTEM_PYTHON) $(VIRTUALENVEXEC) $(VENV)
