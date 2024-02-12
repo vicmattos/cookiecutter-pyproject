@@ -1,3 +1,40 @@
+## --------------------------------------------------
+## RUFF
+## --------------------------------------------------
+[tool.ruff]
+fix = true
+line-length = 88
+exclude = [
+    ".git",
+    ".eggs",
+    ".mypy_cache",
+    ".ruff_cache",
+    ".pytest_cache",
+    "__pypackages__",
+    ".venv",
+]
+
+[tool.ruff.format]
+quote-style = "single"
+
+[tool.ruff.lint.isort]
+force-single-line = true
+
+
+## --------------------------------------------------
+## PYTEST
+## --------------------------------------------------
+[tool.pytest.ini_options]
+markers = [
+    "slow: marks tests as slow (deselect with '-m \"not slow\"')"
+]
+
+addopts = "--ignore={{cookiecutter.project_folder}}"
+
+
+## --------------------------------------------------
+## COMMITIZEN
+## --------------------------------------------------
 [tool.commitizen]
 name = "cz_customize"
 tag_format = "$version"
