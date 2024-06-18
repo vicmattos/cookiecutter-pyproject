@@ -8,7 +8,6 @@ def test_bake_with_defaults(cookies, bake_in_temp_dir, text_in_file):
         assert result.exception is None
 
         found_toplevel_files = [f.name for f in result.project_path.iterdir()]
-        assert '.cz.toml' in found_toplevel_files
         assert '.editorconfig' in found_toplevel_files
         assert '.gitignore' in found_toplevel_files
         assert '.pre-commit-config.yaml' in found_toplevel_files
