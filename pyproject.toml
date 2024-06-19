@@ -1,3 +1,27 @@
+[project]
+name = "cookiecutter_pyproject"
+version = "0.0.1"
+description = "vicmattos' personal cookiecutter for python projects"
+readme = "README.md"
+authors = [
+    {name = "Victor Mattos", email = "5757883+vicmattos@users.noreply.github.com"},
+]
+requires-python = ">=3.11"
+
+[project.optional-dependencies]
+dev = [
+    "cookiecutter",
+    "pytest",
+    "pytest-xdist",
+    "pytest-cookies",
+    "cleanpy",
+    "pre-commit",
+    "mkdocs-material",
+    "commitizen",
+    "watchdog[watchmedo]",
+]
+
+
 ## --------------------------------------------------
 ## RUFF
 ## --------------------------------------------------
@@ -77,3 +101,15 @@ choices = [
 type = "input"
 name = "message"
 message = "Write a short and imperative summary of the code changes: (lower case and no period)\n"
+
+
+## --------------------------------------------------
+## BUILD TOOLS
+## --------------------------------------------------
+
+[build-system]
+requires = ["setuptools", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools]
+py-modules = []
