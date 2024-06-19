@@ -1,6 +1,3 @@
-SYSTEM_PYTHON  = $(or $(shell which python3), $(shell which python))
-PYVERSION = $(shell python -c "import sys;print(f'{sys.version_info.major}.{sys.version_info.minor}')")
-VIRTUALENVEXEC = virtualenv.pyz
 VENV = .venv
 # make it work on windows
 ifeq ($(OS), Windows_NT)
@@ -93,8 +90,8 @@ $(PYTHON): $(VENV)
 
 $(VENV_EXEC)/%: $(VENV)
 
-$(VENV): $(VIRTUALENVEXEC)
-	$(SYSTEM_PYTHON) $(VIRTUALENVEXEC) $(VENV)
+$(VENV): virtualenv.pyz
+	$(or $(shell which python3), $(shell which python)) virtualenv.pyz $(VENV)
 	$(VENV_EXEC)/pip install --upgrade pip
 ifeq ($(wildcard requirements-dev.txt),)  # req don't exist
 	$(PYTHON) -m pip install pip-tools
@@ -102,5 +99,5 @@ ifeq ($(wildcard requirements-dev.txt),)  # req don't exist
 endif
 	$(PYTHON) -m pip install -r requirements-dev.txt
 
-$(VIRTUALENVEXEC):
-	curl https://bootstrap.pypa.io/virtualenv/$(PYVERSION)/virtualenv.pyz --output $(VIRTUALENVEXEC)
+virtualenv.pyz:
+	curl https://bootstrap.pypa.io/virtualenv.pyz --output virtualenv.pyz

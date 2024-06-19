@@ -1,4 +1,3 @@
-SYSTEM_PYTHON  = $(or $(shell which python3), $(shell which python))
 VENV = .venv
 # make it work on windows
 ifeq ($(OS), Windows_NT)
@@ -81,7 +80,7 @@ clean: $(PYTHON)  ## Call cleanpy skipping envs and `rm -rf` folders `sites/`, `
 
 
 $(PYTHON):
-	$(SYSTEM_PYTHON) -m venv $(VENV)
+	$(or $(shell which python3), $(shell which python)) -m venv $(VENV)
 	$(VEXECS)/pip install --upgrade pip
 	$(VEXECS)/pip install -r requirements-dev.txt
 

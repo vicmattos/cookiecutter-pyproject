@@ -8,7 +8,6 @@ def test_bake_with_defaults(cookies, bake_in_temp_dir, text_in_file):
         assert result.exception is None
 
         found_toplevel_files = [f.name for f in result.project_path.iterdir()]
-        assert '.cz.toml' in found_toplevel_files
         assert '.editorconfig' in found_toplevel_files
         assert '.gitignore' in found_toplevel_files
         assert '.pre-commit-config.yaml' in found_toplevel_files
@@ -39,6 +38,7 @@ def test_bake_and_test(cookies, bake_in_temp_dir, cli_tool, run_inside_dir):
 def test_run_pre_commit(cookies, bake_in_temp_dir, run_inside_dir):
     with bake_in_temp_dir(cookies) as result:
         run_inside_dir('git init .', result.project_path)
+        run_inside_dir('make .venv', result.project_path)
         assert run_inside_dir('make pre-commit-run', result.project_path) == 0
 
 
@@ -47,6 +47,7 @@ def test_run_bump_version(cookies, bake_in_temp_dir, run_inside_dir, text_in_fil
     with bake_in_temp_dir(cookies) as result:
         run_inside_dir('git init .', result.project_path)
         run_inside_dir('git commit --no-verify --allow-empty -m "first"', result.project_path)
+        run_inside_dir('make .venv', result.project_path)
         pyproject_toml = result.project_path / 'pyproject.toml'
 
         assert run_inside_dir('make bumpver.patch', result.project_path) == 0
