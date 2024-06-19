@@ -1,6 +1,6 @@
 repos:
 -   repo: https://github.com/pre-commit/pre-commit-hooks
-    rev: v4.5.0
+    rev: v4.6.0
     hooks:
     -   id: trailing-whitespace
     -   id: end-of-file-fixer
@@ -13,13 +13,13 @@ repos:
         exclude: "{{cookiecutter.project_folder}}"
 
 -   repo: https://github.com/python-jsonschema/check-jsonschema
-    rev: 0.27.3
+    rev: 0.28.5
     hooks:
     -   id: check-dependabot
     -   id: check-github-workflows
 
 -   repo: https://github.com/astral-sh/ruff-pre-commit
-    rev: v0.1.7
+    rev: v0.4.9
     hooks:
     -   id: ruff # linter
         args: [ --fix ]
@@ -28,6 +28,6 @@ repos:
         exclude: "{{cookiecutter.project_folder}}"
 
 -   repo: https://github.com/commitizen-tools/commitizen
-    rev: v3.13.0
+    rev: v3.27.0
     hooks:
     -   id: commitizen
