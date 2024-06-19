@@ -6,4 +6,4 @@ cleanpy==0.4.0
 pre-commit==3.6.2
 mkdocs-material==9.5.14
 commitizen==3.20.0
-watchdog[watchmedo]==3.0.0
+watchdog[watchmedo]==4.0.0
