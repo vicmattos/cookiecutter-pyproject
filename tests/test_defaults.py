@@ -38,6 +38,7 @@ def test_bake_and_test(cookies, bake_in_temp_dir, cli_tool, run_inside_dir):
 def test_run_pre_commit(cookies, bake_in_temp_dir, run_inside_dir):
     with bake_in_temp_dir(cookies) as result:
         run_inside_dir('git init .', result.project_path)
+        run_inside_dir('make .venv', result.project_path)
         assert run_inside_dir('make pre-commit-run', result.project_path) == 0
 
 
@@ -46,6 +47,7 @@ def test_run_bump_version(cookies, bake_in_temp_dir, run_inside_dir, text_in_fil
     with bake_in_temp_dir(cookies) as result:
         run_inside_dir('git init .', result.project_path)
         run_inside_dir('git commit --no-verify --allow-empty -m "first"', result.project_path)
+        run_inside_dir('make .venv', result.project_path)
         pyproject_toml = result.project_path / 'pyproject.toml'
 
         assert run_inside_dir('make bumpver.patch', result.project_path) == 0
