@@ -12,4 +12,12 @@ updates:
     schedule:
       interval: "weekly"
     commit-message:
-      prefix: "ci: "
+      prefix: "ci(dev): "
+
+  # Template workflows update
+  - package-ecosystem: github-actions
+    directory: "{{cookiecutter.project_folder}}"
+    schedule:
+      interval: "weekly"
+    commit-message:
+      prefix: "ci(template): "
