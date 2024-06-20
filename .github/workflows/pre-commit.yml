@@ -40,7 +40,7 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
           base: ${{ github.ref_name }}
           branch: dependency/pre-commit
-          title: Autoupdate pre-commit hooks
-          commit-message: Run `pre-commit autoupdate`
+          commit-message: 'ci(pre-commit): run `pre-commit autoupdate`'
+          title: 'ci(dev-deps): bump pre-commit hooks version'
           body: Update versions of tools in pre-commit configs to latest version
           labels: dependencies,pre-commit
